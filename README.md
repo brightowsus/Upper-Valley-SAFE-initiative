@@ -1,1 +1,1 @@
-# Upper-Valley-SAFE-initiative-
+# Upper-Valley-SAFE-initiative
