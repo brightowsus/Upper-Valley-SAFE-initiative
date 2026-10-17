@@ -1,4 +1,4 @@
-import heroImage from "../../assets/images/hero_image.avif";
+import heroImage from "../../assets/images/close-up-girl-with-parent-tablet.webp";
 import { FaArrowRight } from "react-icons/fa";
  
 function Hero() {
@@ -12,8 +12,8 @@ function Hero() {
           </p>
  
           <h1 className="mt-4 text-4xl font-extrabold leading-[1.08] tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-            Internet safety and child abuse prevention for Eastern Idaho
-            families
+            Internet Safety and Child Exploitation Prevention for Eastern Idaho
+            Families
           </h1>
  
           <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
@@ -39,8 +39,7 @@ function Hero() {
           </div>
  
           <p className="mt-6 text-sm text-gray-500">
-            Volunteer-led · Free for families · Based in Rexburg, serving the
-            Upper Valley
+            Volunteer-Supported· Free for families · Based in Rexburg, serving Eastern Idaho
           </p>
         </div>
  
@@ -57,7 +56,7 @@ function Hero() {
               Next community workshop
             </p>
             <h2 className="mt-1.5 text-lg font-bold leading-snug text-gray-900">
-              Keep Rexburg Kids Safe in a Digital World
+              Keep Your Kids Safe in a Digital World
             </h2>
             <p className="mt-2 text-sm leading-6 text-gray-600">
               Saturday, November 14 · 5:00–7:00 pm
