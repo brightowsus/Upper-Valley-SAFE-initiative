@@ -2,6 +2,7 @@ import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import UVSI_logo from "../assets/images/UVSI_logo.png";
 
+
 // These are the nav sections that have a dropdown menu.
 const links = [
   {label: "About", dropdown: false},

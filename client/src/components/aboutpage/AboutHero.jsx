@@ -4,6 +4,7 @@ const AboutHero = ({
   homeHref = "/",
   teamHref = "#team",
   workshopHref = "#workshops",
+  
 }) => {
   return (
     <section className="w-full bg-white px-5 py-10 text-gray-900 sm:px-8 lg:py-14">
