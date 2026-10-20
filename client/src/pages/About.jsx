@@ -3,6 +3,9 @@ import { Helmet } from "react-helmet-async";
 import Navbar from "../components/Navbar";
 import AboutHero from "../components/aboutpage/AboutHero";
 import Footer from "../components/Footer";
+import MissionSection from "../components/aboutpage/MissionVision";
+import SafeSection from "../components/aboutpage/SafeSection";
+import OurStory from "../components/aboutpage/OurStory";
 
 
 const About = () => {
@@ -29,6 +32,9 @@ const About = () => {
 
       <Navbar />
       <AboutHero />
+      <MissionSection />
+      <SafeSection />
+      <OurStory />
       <Footer />
     </>
   );
