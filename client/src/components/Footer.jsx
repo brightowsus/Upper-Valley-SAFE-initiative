@@ -78,7 +78,7 @@ function Footer() {
             </p>
  
             <p className="mt-3 max-w-sm text-[15px] leading-7">
-              A volunteer-led nonprofit preventing exploitation before it
+              A volunteer-Supported nonprofit preventing exploitation before it
               happens through free, evidence-informed education.
             </p>
  
