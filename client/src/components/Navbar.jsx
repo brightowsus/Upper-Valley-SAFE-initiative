@@ -2,8 +2,6 @@ import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import UVSI_logo from "../assets/images/UVSI_logo.png";
 
- 
-
 // ADD LINKS TO SPECIFIC PAGES LATER
 const links = [
   { label: "About", dropdown: false, href:"#" },
