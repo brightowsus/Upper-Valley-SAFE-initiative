@@ -40,7 +40,7 @@ function UpcomingEvents() {
                 <ul className="mt-10 space-y-4">
                     {events.map(({ month, day, tags, title, details, cta, href}) => (
                         <li key={title} className="flex flex-col gap-5 rounded-xl border-2 border-gray-200
-                        bg-white p-5 transition hover:border-[#09234A] text-[#09234A" aria-hidden = "true">
+                        bg-white p-5 transition hover:border-[#09234A] text-[#09234A]" aria-hidden = "true">
                             
                             {/* Date Box */}
                             <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-lg

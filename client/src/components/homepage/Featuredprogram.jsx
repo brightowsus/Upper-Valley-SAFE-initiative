@@ -13,7 +13,7 @@ const lessons = [
  
 function FeaturedProgram() {
   return (
-    <section className="bg-white">
+    <section className="bg-[#F2F3F5]">
       <div className="grid w-full items-center gap-12 px-6 py-16 sm:px-10 lg:grid-cols-2 lg:gap-20 lg:px-16 lg:py-20">
         {/* Image placeholder here */}
         <div
@@ -31,7 +31,7 @@ function FeaturedProgram() {
             Featured program · Ages 7–11
           </p>
           <h2 className="mt-2 text-3xl font-extrabold leading-tight tracking-tight text-gray-900 sm:text-4xl">
-            Safety Heroes: how we teach kids safety
+            Safety Heroes: How We Teach Kids Safety
           </h2>
           <p className="mt-4 max-w-xl text-lg leading-8 text-gray-600">
             A free, interactive after-school program, offered in partnership

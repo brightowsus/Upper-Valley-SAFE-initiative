@@ -45,11 +45,15 @@ function Hero() {
  
         {/* Image and Card*/}
         <div className="relative mb-10 lg:mb-0">
-          <img
-            src={heroImage}
-            alt="A parent and children talking together about staying safe online"
-            className="aspect-[4/3] w-full rounded-2xl object-cover shadow-xl"
-          />
+          <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#0d3169] via-[#09234A] 
+          to-[#061a38] p-3 shadow-xl sm:p-4 lg:p-5">
+
+            <img
+              src={heroImage}
+              alt="A parent and children talking together about staying safe online"
+              className="relative aspect-[5/4] w-full rounded-3xl object-cover shadow-2xl ring-4 ring-white/10"
+            />
+          </div>
  
           <div className="absolute -bottom-10 left-4 w-[17.5rem] rounded-xl bg-white p-5 shadow-2xl ring-1 ring-black/5 sm:w-80 lg:-left-8">
             <p className="text-xs font-semibold text-gray-500">
