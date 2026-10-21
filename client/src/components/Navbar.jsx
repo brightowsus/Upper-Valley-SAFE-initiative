@@ -4,7 +4,7 @@ import UVSI_logo from "../assets/images/UVSI_logo.png";
 
 // ADD LINKS TO SPECIFIC PAGES LATER
 const links = [
-  { label: "About", dropdown: false, href:"#" },
+  { label: "About", dropdown: false, href:"/about" },
   { label: "Programs", dropdown: true, href:"#" },
   { label: "Events & Workshops", dropdown: true, href: "/events" },
   { label: "Resources", dropdown: true, href:"#"},
