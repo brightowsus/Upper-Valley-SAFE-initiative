@@ -9,6 +9,19 @@ import UpcomingEvents from "../components/homepage/Upcomingevents";
 import Testimonials from "../components/homepage/Quotes";
 import Partners from "../components/homepage/Partners";
 import CrisisHelp from "../components/homepage/Crisishelp";
+import { Helmet } from "react-helmet-async";
+
+<Helmet>
+  <title>
+    Upper Valley SAFE Initiative | Child Abuse Prevention
+  </title>
+
+  <meta
+    name="description"
+    content="Helping protect children, strengthen families, and build safer communities throughout the Upper Valley."
+  />
+</Helmet>
+
 
 function Home() {
   return (
@@ -25,6 +38,7 @@ function Home() {
         <Testimonials />
         <Partners />
         <CrisisHelp />
+
       </main>
 
       <Footer />

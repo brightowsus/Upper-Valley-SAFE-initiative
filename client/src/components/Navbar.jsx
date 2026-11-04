@@ -6,7 +6,15 @@ import UVSI_logo from "../assets/images/UVSI_logo.png";
 
 // ADD LINKS TO SPECIFIC PAGES LATER
 const links = [
-  { label: "About", dropdown: false, href:"#" },
+  { label: "About Us", dropdown: true, href:"#", children: [
+    {
+      label: "Our Team", href: "#"
+    },
+    {
+      label: "Our Community", href: "#"
+    }
+  ], 
+},
   { label: "Programs", dropdown: true, href:"#" },
   { label: "Events & Workshops", dropdown: true, href: "/events" },
   { label: "Resources", dropdown: true, href:"#"},
@@ -78,27 +86,52 @@ function Navbar() {
           {/* Desktop menu */}
           <div className="hidden shrink-0 items-center gap-6 xl:flex 2xl:gap-10">
             <ul className="flex items-center gap-6 text-[15px] font-medium text-gray-800 2xl:gap-10">
-              {links.map(({ label, dropdown, href }) => (
-                <li key={label}>
-                  <a
-                    href={href}
-                    className="group relative inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition-colors hover:text-[#09234A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#09234A] after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-0 after:bg-[#EE4024] after:transition-all after:duration-200 hover:after:w-full"
-                  >
-                    {label}
-                    {dropdown && (
-                      <span
-                        aria-hidden="true"
-                        className="inline-block text-[10px] leading-none text-gray-500 transition-transform duration-200 group-hover:rotate-180 group-hover:text-[#09234A]"
-                      >
-                        ▼
-                      </span>
+              {links.map(({ label, dropdown, href, children }) => {
+                const hasMenu = Boolean(children);
+                return(
+                  <li key={label} className="group/item relative">
+                    <a href={href} className="group relative inline-flex items-center gap-1.5 whitespace-nowrap
+                    py-2 transition-colors hover:text-[#09234A] focus-visible:outline focus-visible:outline-2 
+                    focus-visible:outline-offset-4 focus-visible:outline-[#09234A] after:absolute after:-bottom-0.5
+                    after:left-0 after:h-0.5 after:w-0 after:bg-[#EE4024] after:transition-all after:duration-200
+                    hover:after:w-full">
+                      {label}
+                      {(dropdown || hasMenu) && (
+                        <span aria-hidden="true" 
+                        className="inline-block text-[10px] leading-none text-gray-500 transition-transform duration-200
+                        group-hover/item:rotate-180 group-hover/item:text-[#09234A] group-focus-within/item:rotate-180">
+                          ▼
+                        </span>
+                      )}
+                    </a>
+
+                    {/* Dropdown menu */}
+                    {hasMenu && (
+                      <div className="invisible absolute left-0 top-full z-50 pt-3 opacity-0 transition
+                      duration-150 group-hover/item:visible group-hover/item:opacity-100 group-focus-within/item:visible
+                      group-focus-within/item:opacity-100">
+                        <ul className="w-56 overflow-hidden rounded-xl border border-gray-200 bg-white py-2 shadow-xl">
+                          {children.map((child) => (
+                            <li key={child.label}>
+                              <a href={child.href} className="block px-5 py-2.5 text-[15px] font-medium text-gray-800
+                              transition-colors hover:bg-[#09234A]/5 hover:text-[#09234A] focus-visible:bg-[#09234A]/5
+                              focus-visible:outline-none">
+                                {child.label}
+                              </a>
+                            </li>
+                          ))}      
+                        </ul>
+
+                      </div>
                     )}
-                  </a>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
  
-            <button className="whitespace-nowrap rounded-lg bg-[#09234A] px-6 py-2.5 text-[15px] font-semibold text-white shadow-sm transition hover:bg-[#0d3169] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#09234A]">
+            <button className="whitespace-nowrap rounded-lg bg-[#09234A] px-6 py-2.5 text-[15px] font-semibold text-white shadow-sm 
+            transition hover:bg-[#0d3169] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
+            focus-visible:outline-[#09234A]">
               Donate
             </button>
           </div>
@@ -118,14 +151,28 @@ function Navbar() {
         {isOpen && (
           <div className="border-t border-gray-200 bg-white xl:hidden">
             <ul className="w-full divide-y divide-gray-100 px-6 py-2 font-medium text-gray-800 sm:px-10 lg:px-16">
-              {links.map(({ label, href}) => (
+              {links.map(({ label, href, children}) => (
                 <li key={label}>
                   <a
                     href={href}
+                    onClick={() => setIsOpen(false)}
                     className="flex items-center justify-between py-3.5 transition-colors hover:text-[#09234A]"
                   >
                     {label}
                   </a>
+                  {children && (
+                    <ul className="mb-3 ml-2 space-y-1 border-1-2 border-[#EE4024]/40 pl-4">
+                      {children.map((child) => (
+                        <li key={child.label}>
+                          <a href={child.href} onClick={() => setIsOpen(false)} className="block py-2 text-[15px]
+                          text-gray-600 transition-colors hover:text-[#09234A]">
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
                 </li>
               ))}
  
