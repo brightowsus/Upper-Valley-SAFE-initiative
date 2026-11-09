@@ -1,4 +1,6 @@
-import { FaCheckCircle, FaShieldAlt } from "react-icons/fa";
+import { FaCheckCircle} from "react-icons/fa";
+
+import featuredprogramimage from "../../assets/images/safety-hero-homepage.webp";
  
 // If we want a real photo, import it at the top,
 // then replace the placeholder <div> where it says "Image placeholder here":
@@ -16,14 +18,8 @@ function FeaturedProgram() {
     <section className="bg-[#F2F3F5]">
       <div className="grid w-full items-center gap-12 px-6 py-16 sm:px-10 lg:grid-cols-2 lg:gap-20 lg:px-16 lg:py-20">
         {/* Image placeholder here */}
-        <div
-          role="img"
-          aria-label="Safety Heroes lesson in a Madison School District classroom"
-          className="flex aspect-[4/3] w-full flex-col items-center justify-center gap-3 rounded-2xl bg-gradient-to-br from-[#09234A]/10 to-[#09234A]/[0.03] text-[#09234A] ring-1 ring-gray-200"
-        >
-          <FaShieldAlt className="text-6xl" aria-hidden="true" />
-          <span className="text-sm font-semibold">Safety Heroes</span>
-        </div>
+        <img src={featuredprogramimage} alt="Safety Heroes lesson in a Madison School District classroom" 
+        className="aspect-[4/3] w-full rounded-2xl object-cover shadow-lg" />
  
         {/* Text */}
         <div>

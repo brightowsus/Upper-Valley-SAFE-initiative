@@ -5,7 +5,6 @@ import UpComingEvents from "../components/Eventsworshops/UpComing";
 import ParentNight from "../components/Eventsworshops/ParentNight";
 import Calendar from "../components/Eventsworshops/Calendar";
 import AwarenessMonth from "../components/Eventsworshops/AwarenessMonth";
-import FundCom from "../components/Eventsworshops/FundAndCom";
 import RequestPres from "../components/Eventsworshops/RequestPres";
 import PastEvents from "../components/Eventsworshops/PastEvents";
 import { Helmet } from "react-helmet-async";
@@ -32,9 +31,9 @@ function EventsAndWorkshops() {
         <ParentNight />
         <Calendar />
         <AwarenessMonth />
-        <FundCom />
         <RequestPres />
         <PastEvents />
+        
         
       </main>
 
