@@ -1,4 +1,4 @@
-import heroImage from "../../assets/images/hero_image.avif";
+import heroImage from "../../assets/images/abouthero_image.avif";
 
 const AboutHero = ({
   homeHref = "/",
@@ -29,7 +29,7 @@ const AboutHero = ({
           <div className="min-w-0">
 
             <h1 className="mb-6 text-[36px] font-extrabold leading-[1.08] tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
-              A Rexburg nonprofit working to prevent child abuse across the
+              A Rexburg nonprofit working to prevent child exploitation across the
               Upper Valley
             </h1>
 

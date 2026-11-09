@@ -6,6 +6,10 @@ import Footer from "../components/Footer";
 import MissionSection from "../components/aboutpage/MissionVision";
 import SafeSection from "../components/aboutpage/SafeSection";
 import OurStory from "../components/aboutpage/OurStory";
+import WhoWeServe from "../components/aboutpage/WhoWeServe";
+import HowWeWork from "../components/aboutpage/HowWeWork";
+import NewsSection from "../components/aboutpage/NewsSection";
+import FAQSection from "../components/aboutpage/FAQSection";
 
 
 const About = () => {
@@ -35,6 +39,10 @@ const About = () => {
       <MissionSection />
       <SafeSection />
       <OurStory />
+      <WhoWeServe />
+      <HowWeWork />
+      <NewsSection />
+      <FAQSection />
       <Footer />
     </>
   );
