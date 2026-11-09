@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import EventsAndWorkshops from "./pages/EventsAndWorkshops";
 import NotFound from "./pages/NotFound";
+import Community from "./pages/Community";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/events" element={<EventsAndWorkshops />} />
+        <Route path="/community" element={<Community />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
