@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-//import EventDetail from "../components/Eventsworshops/EventsDetails";
+import EventDetail from "../components/Eventsworshops/EventsDetails";
 import { getEventBySlug } from "../components/Eventsworshops/eventsPage";
  
 // Route: /events/:slug  → looks the event up in eventPages.js

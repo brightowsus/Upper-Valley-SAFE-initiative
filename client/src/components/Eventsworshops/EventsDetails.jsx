@@ -13,7 +13,7 @@ import {
   toDate,
   formatDateLong,
   googleCalendarUrl,
-} from "./eventPages";
+} from "./eventsPage";
  
 // The reusable event page template. Give it one event object from eventPages.js.
 function EventDetail({ event }) {
