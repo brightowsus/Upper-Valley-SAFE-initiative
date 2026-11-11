@@ -1,5 +1,5 @@
 import digitalSafety from "../../assets/images/digital-safety.webp"
-import exploitationPrevention from "../../assets/images/burg-with-lock.webp"
+import exploitationPrevention from "../../assets/images/masked-man-computer.webp"
 import aiSafety from "../../assets/images/computer-man-sheild.webp"
 import familysafety from "../../assets/images/family-with-sheild.webp"
 
@@ -97,7 +97,7 @@ function WhatWeTeach(){
                         hover:shadow-lg">
 
                             {/* Can put other photos later when we have them.*/}
-                            <img src={images} alt="" className="aspect-[4/3] w-full object-cover"/>
+                            <img src={images} alt={`Image for ${title}`} className="aspect-[4/3] w-full object-cover"/>
 
                             <div className="flex flex-1 flex-col p-6">
                                 <h3 className="text-xl font-bold leading-snug text-gray-900">

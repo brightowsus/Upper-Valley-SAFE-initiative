@@ -1,4 +1,5 @@
 import {FaCamera, FaVideo} from "react-icons/fa";
+//import keynotescottpope from "../assets/images/keynote-scott-pope.webp";
 
 //REMEMBER TO ADD LINKS LATER
 const past = [
