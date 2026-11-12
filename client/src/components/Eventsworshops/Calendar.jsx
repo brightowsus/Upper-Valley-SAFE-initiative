@@ -1,11 +1,10 @@
 import {useState} from "react";
-import { events} from "./EventData";
+import { eventPages as events, toDate } from "./data/EventPageData.js";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 const pad = (n) => String(n).padStart(2, "0");
 const iso = (y, m, d) => `${y}-${pad(m + 1)}-${pad(d)}`;
-const toDate = (s) => new Date(`${s}T12:00:00`);
 
 function startOfToday(){
     const t = new Date();
@@ -121,7 +120,7 @@ function EventsCalendar(){
                                         {dayEvents.map((e) => (
                                         <a
                                             key={e.id}
-                                            href="#"
+                                            href={`/events/${e.slug}`}
                                             className="mt-1 block rounded bg-[#09234A] px-2 py-1.5 text-[11px] font-semibold leading-tight text-white transition hover:bg-[#0d3169]"
                                         >
                                             {e.shortTitle} · {e.time}

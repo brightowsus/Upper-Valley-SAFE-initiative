@@ -4,7 +4,7 @@
 
 export const events = [
   {
-    id: "meemaw-night",
+    id: "meemaw-movie-craft-night",
     date: "2026-10-20",
     category: "fundraiser",
     label: "Fundraiser",
@@ -21,7 +21,7 @@ export const events = [
     ],
   },
   {
-    id: "keep-rexburg-safe",
+    id: "keep-rexburg-kids-safe",
     date: "2026-11-14",
     category: "workshop",
     label: "Free family workshop",

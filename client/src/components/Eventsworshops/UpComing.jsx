@@ -1,5 +1,10 @@
 import { useMemo, useState } from "react";
-import {events} from "./EventData";
+
+import {
+  eventPages as events,
+  toDate,
+  isPast,
+} from "./data/EventPageData";
  
 const filters = [
   { id: "all", label: "All" },
@@ -10,52 +15,82 @@ const filters = [
   { id: "past", label: "Past events" },
 ];
  
-const toDate = (iso) => new Date(`${iso}T12:00:00`);
 const monthKey = (iso) => iso.slice(0, 7);
+
 const monthLabel = (key) =>
-  toDate(`${key}-01`).toLocaleString("en-US", { month: "long", year: "numeric" });
- 
+  toDate(`${key}-01`).toLocaleString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+
 const selectClass =
   "rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-800 \
   focus:border-[#09234A] focus:outline-none focus:ring-2 focus:ring-[#09234A]/20";
- 
+
 function UpComingEvents() {
   const [filter, setFilter] = useState("all");
   const [city, setCity] = useState("all");
   const [month, setMonth] = useState("all");
- 
-  const cities = useMemo(() => [...new Set(events.map((e) => e.city))].sort(), []);
+
+  // Get available cities from central event data
+  const cities = useMemo(
+    () => [...new Set(events.map((e) => e.city))].sort(),
+    []
+  );
+
+  // Get available months from central event data
   const months = useMemo(
     () => [...new Set(events.map((e) => monthKey(e.date)))].sort(),
     []
   );
- 
+
+  // Filter events
   const visible = useMemo(() => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
- 
     return events
       .filter((e) => {
-        const isPast = toDate(e.date) < today;
-        if (filter === "past") return isPast;
-        if (isPast) return false;
-        if (filter !== "all" && e.category !== filter) return false;
+        const past = isPast(e.date);
+
+        // Show only past events
+        if (filter === "past") return past;
+
+        // Hide past events from all other filters
+        if (past) return false;
+
+        // Filter by event category
+        if (filter !== "all" && e.category !== filter) {
+          return false;
+        }
+
         return true;
       })
+
+      // Filter by city
       .filter((e) => city === "all" || e.city === city)
+
+      // Filter by month
       .filter((e) => month === "all" || monthKey(e.date) === month)
+
+      // Sort by date
       .sort((a, b) => a.date.localeCompare(b.date));
+
   }, [filter, city, month]);
- 
+
   return (
     <section id="upcoming" className="scroll-mt-24 bg-[#F2F3F5]">
       <div className="w-full px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
+
         <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-          Upcoming Workshops and Events
+          {filter === "past"
+            ? "Past Events"
+            : "Upcoming Workshops and Events"}
         </h2>
- 
+
         {/* Filtering buttons */}
-        <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter events by type">
+        <div
+          className="mt-8 flex flex-wrap gap-2"
+          role="group"
+          aria-label="Filter events by type"
+        >
           {filters.map(({ id, label }) => (
             <button
               key={id}
@@ -71,58 +106,96 @@ function UpComingEvents() {
             </button>
           ))}
         </div>
- 
+
         {/* City and Month */}
         <div className="mt-5 flex flex-wrap gap-4">
+
           <label className="flex flex-col gap-1 text-xs font-semibold text-gray-600">
             City
-            <select value={city} onChange={(e) => setCity(e.target.value)} className={selectClass}>
+
+            <select
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className={selectClass}
+            >
               <option value="all">All cities</option>
+
               {cities.map((c) => (
-                <option key={c} value={c}>{c}</option>
+                <option key={c} value={c}>
+                  {c}
+                </option>
               ))}
             </select>
           </label>
- 
+
           <label className="flex flex-col gap-1 text-xs font-semibold text-gray-600">
             Month
-            <select value={month} onChange={(e) => setMonth(e.target.value)} className={selectClass}>
+
+            <select
+              value={month}
+              onChange={(e) => setMonth(e.target.value)}
+              className={selectClass}
+            >
               <option value="all">All months</option>
+
               {months.map((m) => (
-                <option key={m} value={m}>{monthLabel(m)}</option>
+                <option key={m} value={m}>
+                  {monthLabel(m)}
+                </option>
               ))}
             </select>
           </label>
+
         </div>
- 
-        {/* Results */}
+
+        {/* Event Results */}
         <ul className="mt-8 space-y-4" aria-live="polite">
+
           {visible.map((e) => {
             const d = toDate(e.date);
+
             return (
               <li
                 key={e.id}
                 className="flex flex-col gap-4 rounded-xl border-2 border-gray-200 bg-white p-5 transition hover:border-[#09234A] hover:shadow-md sm:flex-row sm:items-center sm:gap-6"
               >
+
+                {/* Event Date */}
                 <div
                   className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-lg border-2 border-[#09234A] text-[#09234A]"
                   aria-hidden="true"
                 >
                   <span className="text-xs font-bold uppercase">
-                    {d.toLocaleString("en-US", { month: "short" })}
+                    {d.toLocaleString("en-US", {
+                      month: "short",
+                    })}
                   </span>
-                  <span className="text-2xl font-extrabold leading-none">{d.getDate()}</span>
+
+                  <span className="text-2xl font-extrabold leading-none">
+                    {d.getDate()}
+                  </span>
                 </div>
- 
+
+                {/* Event Information */}
                 <div className="flex-1">
+
                   <p className="text-xs font-semibold text-gray-500">
                     {e.label} · {e.city} · {e.audience}
                   </p>
-                  <h3 className="mt-1 text-lg font-bold text-gray-900">{e.title}</h3>
-                  <p className="mt-1 text-sm text-gray-600">{e.details}</p>
+
+                  <h3 className="mt-1 text-lg font-bold text-gray-900">
+                    {e.title}
+                  </h3>
+
+                  <p className="mt-1 text-sm text-gray-600">
+                    {e.details}
+                  </p>
+
                 </div>
- 
-                <div className="flex shrink-0 gap-3">
+
+                {/* Event Actions */}
+                <div className="flex shrink-0 flex-wrap gap-3">
+
                   {e.actions.map(({ label, href, solid }) => (
                     <a
                       key={label}
@@ -136,11 +209,14 @@ function UpComingEvents() {
                       {label}
                     </a>
                   ))}
+
                 </div>
+
               </li>
             );
           })}
- 
+
+          {/* No Events Found */}
           {visible.length === 0 && (
             <li className="rounded-xl border-2 border-dashed border-gray-300 bg-white p-8 text-center text-gray-600">
               {filter === "past"
@@ -148,10 +224,11 @@ function UpComingEvents() {
                 : "No events match those filters. Try a different type, city or month."}
             </li>
           )}
+
         </ul>
       </div>
     </section>
   );
 }
- 
+
 export default UpComingEvents;

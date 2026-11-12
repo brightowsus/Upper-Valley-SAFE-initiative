@@ -8,6 +8,8 @@
 //   shortTitle: "Short Title for Calendar",
 //   label: "Free family workshop", // This is to us as a tag
 //   city: "Rexburg",
+//   audience:"Parents",
+//   category: "workshop", // workshop, parent-night, fundraiser, community
 //   date: "2026-11-14",    // YYY-MM-DD
 //   start: "17:00",      // Do 24 hours
 //   end: "19:00",
@@ -28,6 +30,8 @@ const rawPages = [
     title: "“Meemaw” Movie and Craft Night",
     shortTitle: "Meemaw Movie & Craft Night",
     label: "Fundraiser",
+    audience: "Ladies' night",
+    category: "fundraiser",
     city: "Rexburg",
     date: "2026-10-20",
     start: "18:00",
@@ -76,6 +80,8 @@ const rawPages = [
     label: "Free family workshop",
     city: "Rexburg",
     date: "2026-11-14",
+    audience: "Parents, caregivers and community members",
+    category: "workshop",
     start: "17:00",
     end: "19:00",
     venue: "Madison Jr. High",
@@ -103,29 +109,63 @@ const rawPages = [
 
 
 // This is to help with times and dates
-export const toDate = (iso) => new Date(`${iso}T12:00:00`);
- 
+// Convert ISO date into a Date object
+export const toDate = (iso) =>
+  new Date(`${iso}T12:00:00`);
+
+
+// Check whether an event has already passed
 export const isPast = (iso) => {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+
   return toDate(iso) < today;
 };
- 
-const to12 = (t) => {
-  const [h, m] = t.split(":").map(Number);
-  return { h: h % 12 || 12, m, mer: h >= 12 ? "pm" : "am" };
+
+
+// Convert 24-hour time into 12-hour time
+const to12 = (time) => {
+  const [h, m] = time.split(":").map(Number);
+
+  return {
+    h: h % 12 || 12,
+    m,
+    mer: h >= 12 ? "pm" : "am",
+  };
 };
- 
-// "5:00–7:00 pm"
+
+
+// Full time: 5:00–7:00 pm
 export function formatTimeRange(start, end) {
   const a = to12(start);
   const b = to12(end);
-  const fmt = (x) => `${x.h}:${String(x.m).padStart(2, "0")}`;
+
+  const fmt = (x) =>
+    `${x.h}:${String(x.m).padStart(2, "0")}`;
+
   return a.mer === b.mer
     ? `${fmt(a)}–${fmt(b)} ${b.mer}`
     : `${fmt(a)} ${a.mer}–${fmt(b)} ${b.mer}`;
 }
- 
+
+
+// Short time: 5–7 pm
+const formatTimeShort = (start, end) => {
+  const a = to12(start);
+  const b = to12(end);
+
+  const fmt = (x) =>
+    x.m === 0
+      ? `${x.h}`
+      : `${x.h}:${String(x.m).padStart(2, "0")}`;
+
+  return a.mer === b.mer
+    ? `${fmt(a)}–${fmt(b)} ${b.mer}`
+    : `${fmt(a)} ${a.mer}–${fmt(b)} ${b.mer}`;
+};
+
+
+// Full date: Saturday, November 14, 2026
 export const formatDateLong = (iso) =>
   toDate(iso).toLocaleString("en-US", {
     weekday: "long",
@@ -133,27 +173,95 @@ export const formatDateLong = (iso) =>
     day: "numeric",
     year: "numeric",
   });
- 
-export const eventPages = rawPages.map((e) => ({
-  ...e,
-  path: `/events/${e.slug}`,
-  timeFull: formatTimeRange(e.start, e.end),
-  fullAddress: `${e.street}, ${e.city}, ID`,
-}));
- 
-export const getEventBySlug = (slug) => eventPages.find((e) => e.slug === slug);
- 
-// Link that adds the event to the visitor's Google Calendar
-export function googleCalendarUrl(e) {
-  const d = e.date.replaceAll("-", "");
-  const t = (x) => `${x.replace(":", "")}00`;
+
+
+/* =========================================
+   PROCESSED EVENT DATA
+========================================= */
+
+// Add automatically generated properties to every event
+export const eventPages = rawPages
+  .map((event) => {
+    const weekday = toDate(event.date).toLocaleString(
+      "en-US",
+      { weekday: "long" }
+    );
+
+    return {
+      ...event,
+
+      id: event.slug,
+
+      path: `/events/${event.slug}`,
+
+      time: formatTimeShort(event.start, event.end),
+
+      timeFull: formatTimeRange(event.start, event.end),
+
+      fullAddress: `${event.street}, ${event.city}, ID`,
+
+      details: `${event.venue}, ${event.street} · ${weekday}, ${formatTimeRange(event.start, event.end)} · ${event.cost}`,
+
+      actions: [
+        {
+          label: "Details",
+          href: `/events/${event.slug}`,
+          solid: false,
+        },
+        {
+          label: event.cta.label,
+          href: event.cta.href,
+          solid: true,
+        },
+      ],
+    };
+  })
+  .sort((a, b) => a.date.localeCompare(b.date));
+
+
+/* =========================================
+   EVENT LOOKUP FUNCTIONS
+========================================= */
+
+// Find one event using its URL slug
+export const getEventBySlug = (slug) =>
+  eventPages.find((event) => event.slug === slug);
+
+
+// Get upcoming events
+export const getUpcomingEvents = () =>
+  eventPages.filter((event) => !isPast(event.date));
+
+
+// Get past events
+export const getPastEvents = () =>
+  eventPages.filter((event) => isPast(event.date));
+
+
+// Get events by category
+export const getEventsByCategory = (category) =>
+  eventPages.filter((event) => event.category === category);
+
+
+/* =========================================
+   GOOGLE CALENDAR
+========================================= */
+
+// Create a Google Calendar link for an event
+export function googleCalendarUrl(event) {
+  const date = event.date.replaceAll("-", "");
+
+  const time = (value) =>
+    `${value.replace(":", "")}00`;
+
   const params = new URLSearchParams({
     action: "TEMPLATE",
-    text: e.title,
-    dates: `${d}T${t(e.start)}/${d}T${t(e.end)}`,
-    details: e.summary,
-    location: `${e.venue}, ${e.fullAddress}`,
+    text: event.title,
+    dates: `${date}T${time(event.start)}/${date}T${time(event.end)}`,
+    details: event.summary,
+    location: `${event.venue}, ${event.fullAddress}`,
     ctz: "America/Boise",
   });
+
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 }

@@ -20,7 +20,7 @@ const options = [
 
 function RequestPres(){
     return(
-        <section className="bg-white">
+        <section className="bg-[#F2F3F6]">
             <div className="w-full px-6 py-16 sm:px-10 lg:px-16 lg:py-20">
                 <h2 className="max-w-3xl text-3xl font-extrabold 
                 leading-tight tracking-tight text-gray-900 sm:text-4xl">
