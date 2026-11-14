@@ -7,6 +7,9 @@ import NotFound from "./pages/NotFound";
 import OurTeam from "./pages/OurTeam";
 import Community from "./pages/Community";
 import Contact from "./pages/Contact";
+import Donate from "./pages/Donate";
+import DonateSuccess from "./pages/DonateSuccess";
+import DonateCancel from "./pages/DonateCancel";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Route path="/our-team" element={<OurTeam />} />
         <Route path="/community" element={<Community />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/donate" element={<Donate />} />
+        <Route path="/donate/success" element={<DonateSuccess />} />
+        <Route path="/donate/cancel" element={<DonateCancel />} />
       </Routes>
     </BrowserRouter>
   );
