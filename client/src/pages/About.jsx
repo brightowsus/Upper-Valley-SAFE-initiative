@@ -10,13 +10,15 @@ import WhoWeServe from "../components/aboutpage/WhoWeServe";
 import HowWeWork from "../components/aboutpage/HowWeWork";
 import NewsSection from "../components/aboutpage/NewsSection";
 import FAQSection from "../components/aboutpage/FAQSection";
-
+import ContactCTA from "../components/aboutpage/ContactCTA";
 
 const About = () => {
   return (
     <>
       <Helmet>
-        <title>About Us | Rexburg, Idaho Child Abuse Prevention Nonprofit</title>
+        <title>
+          About Us | Rexburg, Idaho Child Abuse Prevention Nonprofit
+        </title>
 
         <meta
           name="description"
@@ -35,17 +37,25 @@ const About = () => {
       </Helmet>
 
       <Navbar />
-      <AboutHero />
-      <MissionSection />
-      <SafeSection />
-      <OurStory />
-      <WhoWeServe />
-      <HowWeWork />
-      <NewsSection />
-      <FAQSection />
+
+      <main>
+        <AboutHero />
+        <MissionSection />
+        <SafeSection />
+        <OurStory />
+        <WhoWeServe />
+        <HowWeWork />
+        <NewsSection />
+        <FAQSection />
+
+        {/* Contact Call-to-Action */}
+        <ContactCTA />
+      </main>
+
       <Footer />
     </>
   );
 };
 
 export default About;
+
