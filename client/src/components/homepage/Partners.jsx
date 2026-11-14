@@ -11,7 +11,7 @@ const partners = [
  
 function Partners() {
   return (
-    <section className="border-y border-gray-200 bg-white">
+    <section className="border-y border-gray-200 bg-[#F2F3F5]">
       <div className="w-full px-6 py-12 text-center sm:px-10 lg:px-16">
         <h2 className="text-md font-bold text-gray-900">
           Working Alongside Schools, Law Enforcement, and Community Partners

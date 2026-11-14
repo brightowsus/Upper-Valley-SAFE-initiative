@@ -1,4 +1,4 @@
-import {FaUsers} from "react-icons/fa";
+import keepkidssafe from "../../assets/images/safety-phone.webp";
 
 function EventHero() {
     return(
@@ -37,13 +37,8 @@ function EventHero() {
                     <article className="overflow-hidden rounded-2xl border-2 border-gray-200 bg-white
                     shadow-lg transition hover:border-[#09234A]">
                         {/* needs to put a real photo later*/}
-                        <div className="flex h-48 items-center justify-center bg-gradient-to-br
-                        from-[#09234A]/10 to-[#09234A]/[0.03] sm:h-56">
-                            <FaUsers className="text-6xl text-[#09234A]" aria-hidden="true">
 
-                            </FaUsers>
-
-                        </div>
+                        <img src={keepkidssafe} alt="Keep Kids Safe" className="aspect-[4/3] w-full object-cover"/>
                         <div className="flex gap-5 p-6">
                             <div className="flex h=16 w-16 shrink-0 flex-col items-center justify-center rounded-lg
                             border-2 border-[#09234A] text[#09234A]" aria-hidden="true">
