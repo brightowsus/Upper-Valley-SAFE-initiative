@@ -18,14 +18,14 @@ function App() {
         <Route path="/events" element={<EventsAndWorkshops/>}></Route>
         <Route path="/events/:slug" element={<EventPage />}></Route>
         <Route path="/events/:slug/rsvp" element={<RSVP />}></Route>
+        <Route path="/our-team" element={<OurTeam />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="/contact" element={<Contact />} />
 
         {/* Your other pages go here */}
 
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/our-team" element={<OurTeam />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
   );
