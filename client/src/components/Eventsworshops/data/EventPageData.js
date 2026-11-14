@@ -24,10 +24,14 @@
 //   image: null, // This is for an image or photo
 // },
 
+
+// Testing photos and rsvps of the events
+//import childoncomputer from "../../../assets/images/child-on-computer.webp";
+
 const rawPages = [
   {
     slug: "meemaw-movie-craft-night",
-    title: "“Meemaw” Movie and Craft Night",
+    title: "“Meemaw” Movie and Craft Night",  
     shortTitle: "Meemaw Movie & Craft Night",
     label: "Fundraiser",
     audience: "Ladies' night",
@@ -101,7 +105,7 @@ const rawPages = [
       "Parents and caregivers",
       "Community members who care about kids",
     ],
-    cta: { label: "RSVP", href: "#" },
+    cta: { label: "RSVP", href: "/events/keep-rexburg-kids-safe/rsvp" },
     image: null,
   },
 

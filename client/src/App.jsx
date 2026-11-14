@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import EventsAndWorkshops from "./pages/EventsAndWorkshops";
 import NotFound from "./pages/NotFound";
 import EventPage from "./pages/EventPage";
+import RSVP from "./pages/RSVPPage";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<EventsAndWorkshops/>}></Route>
         <Route path="/events/:slug" element={<EventPage />}></Route>
+        <Route path="/events/:slug/rsvp" element={<RSVP />}></Route>
 
         {/* Your other pages go here */}
 
