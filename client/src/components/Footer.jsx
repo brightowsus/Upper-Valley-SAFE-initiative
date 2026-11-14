@@ -9,9 +9,9 @@ import {
 } from "react-icons/fa";
  
 const explore = [
-  { label: "About us", href: "#" },
+  { label: "About us", href: "/about" },
   { label: "Safety Heroes", href: "#" },
-  { label: "Workshops and events", href: "#" },
+  { label: "Workshops and events", href: "/events" },
   { label: "Volunteer and intern", href: "#" },
   { label: "Donate", href: "#" },
 ];
