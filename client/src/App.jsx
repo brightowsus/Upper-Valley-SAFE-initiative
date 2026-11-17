@@ -28,7 +28,6 @@ function App() {
 
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/our-team" element={<OurTeam />} />
       </Routes>
     </BrowserRouter>
   );
