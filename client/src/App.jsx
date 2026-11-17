@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import EventsAndWorkshops from "./pages/EventsAndWorkshops";
 import NotFound from "./pages/NotFound";
-import OurTeam from "./pages/OurTeam";
 import EventPage from "./pages/EventPage";
 import RSVP from "./pages/RSVPPage";
 import OurTeam from "./pages/OurTeam";
@@ -16,7 +15,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />}
+        <Route path="/about" element={<About />} />
         <Route path="/events" element={<EventsAndWorkshops/>}></Route>
         <Route path="/events/:slug" element={<EventPage />}></Route>
         <Route path="/events/:slug/rsvp" element={<RSVP />}></Route>
@@ -28,7 +27,6 @@ function App() {
 
         <Route path="/about" element={<About />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/our-team" element={<OurTeam />} />
       </Routes>
     </BrowserRouter>
   );
