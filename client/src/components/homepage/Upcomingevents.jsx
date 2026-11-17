@@ -17,7 +17,7 @@ const events = [
         details: "Madison Jr. High · Saturday, 5:00-7:00pm · Free · What every parents in the Upper Valley should know",
         cta: "RSVP",
         // Add links later
-        href: "#"
+        href: "/events/keep-rexburg-kids-safe/rsvp"
     },
 ];
 
