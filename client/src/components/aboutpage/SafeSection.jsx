@@ -61,7 +61,7 @@ const SafeSection = () => {
         <div className="mb-8">
 
           <h2 className="text-[26px] font-bold leading-tight tracking-[-0.5px] text-[#111827] sm:text-[30px]">
-            What SAFE stands for
+            What SAFE Stands For
           </h2>
         </div>
 
