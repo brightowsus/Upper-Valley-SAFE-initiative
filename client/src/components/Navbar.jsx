@@ -18,7 +18,7 @@ const links = [
   { label: "Events & Workshops", dropdown: true, href: "/events" },
   { label: "Resources", dropdown: true, href:"#"},
   { label: "Get Involved", dropdown: true, href:"#" },
-  { label: "Contact", dropdown: false, href:"#" },
+  { label: "Contact", dropdown: false, href:"/contact" },
 ];
 
 function Navbar() {

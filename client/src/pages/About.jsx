@@ -20,7 +20,8 @@ const About = () => {
 
         <meta
           name="description"
-          content="Upper Valley SAFE Initiative is a volunteer-led Rexburg nonprofit that protects children and strengthens families by preventing exploitation before it happens."
+          content="Upper Valley SAFE Initiative is a volunteer-led Rexburg nonprofit that 
+          protects children and strengthens families by preventing exploitation before it happens."
         />
 
         <meta
@@ -30,15 +31,16 @@ const About = () => {
 
         <meta
           property="og:description"
-          content="Discover our mission, team, and work to protect children and strengthen families across the Upper Valley."
+          content="Discover our mission, team, and work to protect children and 
+          strengthen families across the Upper Valley."
         />
       </Helmet>
 
       <Navbar />
       <AboutHero />
-      <MissionSection />
+      <MissionSection /> 
       <SafeSection />
-      <OurStory />
+      <OurStory /> 
       <WhoWeServe />
       <HowWeWork />
       <NewsSection />
