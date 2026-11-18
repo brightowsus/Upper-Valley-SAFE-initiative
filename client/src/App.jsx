@@ -25,10 +25,10 @@ function App() {
         <Route path="/our-team" element={<OurTeam />} />
         <Route path="/community" element={<Community />} />
         <Route path="/contact" element={<Contact />} />
-
-        {/* Your other pages go here */}
-
-        <Route path="/about" element={<About />} />
+        <Route path="/donate" element={<Donate />} />
+        <Route path="/donate/success" element={<DonateSuccess />} />
+        <Route path="/donate/cancel" element={<DonateCancel />} />
+        
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
