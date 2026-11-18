@@ -5,17 +5,20 @@ import { HiMenu, HiX } from "react-icons/hi";
 import UVSI_logo from "../assets/images/UVSI_logo.png";
 
 const links = [
-  { label: "About", href: "/about", dropdown: true },
-  { label: "Programs", href: "#", dropdown: true },
-  { label: "Events & Workshops", href: "/events", dropdown: false },
-  { label: "Resources", href: "#", dropdown: true },
-  { label: "Get Involved", href: "#", dropdown: true },
-  { label: "Contact", href: "/contact", dropdown: false },
-];
-
-const aboutLinks = [
-  { label: "Our Team", href: "/our-team" },
-  { label: "Our Community", href: "/community" },
+  { label: "About Us", dropdown: true, href:"/about", children: [
+    {
+      label: "Our Team", href: "/our-team"
+    },
+    {
+      label: "Our Community", href: "/community"
+    }
+  ], 
+},
+  { label: "Programs", dropdown: true, href:"#" },
+  { label: "Events & Workshops", dropdown: true, href: "/events" },
+  { label: "Resources", dropdown: true, href:"#"},
+  { label: "Get Involved", dropdown: true, href:"#" },
+  { label: "Contact", dropdown: false, href:"#" },
 ];
 
 function Navbar() {
@@ -82,40 +85,52 @@ function Navbar() {
           {/* Desktop menu */}
           <div className="hidden shrink-0 items-center gap-6 xl:flex 2xl:gap-10">
             <ul className="flex items-center gap-6 text-[15px] font-medium text-gray-800 2xl:gap-10">
-              {links.map(({ label, dropdown, href }) => (
-                <li key={label} className="group relative">
-                  <Link
-                    to={href}
-                    className="inline-flex items-center gap-1.5 whitespace-nowrap py-2 transition-colors hover:text-[#09234A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#09234A]"
-                  >
-                    {label}
+              {links.map(({ label, dropdown, href, children }) => {
+                const hasMenu = Boolean(children);
+                return(
+                  <li key={label} className="group/item relative">
+                    <a href={href} className="group relative inline-flex items-center gap-1.5 whitespace-nowrap
+                    py-2 transition-colors hover:text-[#09234A] focus-visible:outline focus-visible:outline-2 
+                    focus-visible:outline-offset-4 focus-visible:outline-[#09234A] after:absolute after:-bottom-0.5
+                    after:left-0 after:h-0.5 after:w-0 after:bg-[#EE4024] after:transition-all after:duration-200
+                    hover:after:w-full">
+                      {label}
+                      {(dropdown || hasMenu) && (
+                        <span aria-hidden="true" 
+                        className="inline-block text-[10px] leading-none text-gray-500 transition-transform duration-200
+                        group-hover/item:rotate-180 group-hover/item:text-[#09234A] group-focus-within/item:rotate-180">
+                          ▼
+                        </span>
+                      )}
+                    </a>
 
-                    {dropdown && (
-                      <span className="inline-block text-[10px] text-gray-500 transition-transform duration-200 group-hover:rotate-180">
-                        ▼
-                      </span>
+                    {/* Dropdown menu */}
+                    {hasMenu && (
+                      <div className="invisible absolute left-0 top-full z-50 pt-3 opacity-0 transition
+                      duration-150 group-hover/item:visible group-hover/item:opacity-100 group-focus-within/item:visible
+                      group-focus-within/item:opacity-100">
+                        <ul className="w-56 overflow-hidden rounded-xl border border-gray-200 bg-white py-2 shadow-xl">
+                          {children.map((child) => (
+                            <li key={child.label}>
+                              <a href={child.href} className="block px-5 py-2.5 text-[15px] font-medium text-gray-800
+                              transition-colors hover:bg-[#09234A]/5 hover:text-[#09234A] focus-visible:bg-[#09234A]/5
+                              focus-visible:outline-none">
+                                {child.label}
+                              </a>
+                            </li>
+                          ))}      
+                        </ul>
+
+                      </div>
                     )}
-                  </Link>
-
-                  {/* About dropdown */}
-                  {label === "About" && (
-                    <div className="invisible absolute left-0 top-full z-50 w-52 translate-y-2 rounded-lg border border-gray-100 bg-white py-2 opacity-0 shadow-lg transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                      {aboutLinks.map((item) => (
-                        <Link
-                          key={item.href}
-                          to={item.href}
-                          className="block px-5 py-3 text-sm text-gray-700 transition hover:bg-gray-100 hover:text-[#09234A]"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
-
-            <button className="whitespace-nowrap rounded-lg bg-[#09234A] px-6 py-2.5 text-[15px] font-semibold text-white shadow-sm transition hover:bg-[#0d3169]">
+ 
+            <button className="whitespace-nowrap rounded-lg bg-[#09234A] px-6 py-2.5 text-[15px] font-semibold text-white shadow-sm 
+            transition hover:bg-[#0d3169] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 
+            focus-visible:outline-[#09234A]">
               Donate
             </button>
           </div>
@@ -135,32 +150,28 @@ function Navbar() {
         {isOpen && (
           <div className="border-t border-gray-200 bg-white xl:hidden">
             <ul className="w-full divide-y divide-gray-100 px-6 py-2 font-medium text-gray-800 sm:px-10 lg:px-16">
-
-              {links.map(({ label, href }) => (
+              {links.map(({ label, href, children}) => (
                 <li key={label}>
-                  <Link
-                    to={href}
+                  <a
+                    href={href}
                     onClick={() => setIsOpen(false)}
                     className="flex items-center justify-between py-3.5 transition-colors hover:text-[#09234A]"
                   >
                     {label}
-                  </Link>
-
-                  {/* Mobile About submenu */}
-                  {label === "About" && (
-                    <div className="mb-3 ml-4 border-l-2 border-[#EE4024] pl-4">
-                      {aboutLinks.map((item) => (
-                        <Link
-                          key={item.href}
-                          to={item.href}
-                          onClick={() => setIsOpen(false)}
-                          className="block py-2.5 text-sm text-gray-600 transition hover:text-[#09234A]"
-                        >
-                          {item.label}
-                        </Link>
+                  </a>
+                  {children && (
+                    <ul className="mb-3 ml-2 space-y-1 border-1-2 border-[#EE4024]/40 pl-4">
+                      {children.map((child) => (
+                        <li key={child.label}>
+                          <a href={child.href} onClick={() => setIsOpen(false)} className="block py-2 text-[15px]
+                          text-gray-600 transition-colors hover:text-[#09234A]">
+                            {child.label}
+                          </a>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   )}
+
                 </li>
               ))}
 

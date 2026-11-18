@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import EventsAndWorkshops from "./pages/EventsAndWorkshops";
 import NotFound from "./pages/NotFound";
+import EventPage from "./pages/EventPage";
+import RSVP from "./pages/RSVPPage";
 import OurTeam from "./pages/OurTeam";
 import Community from "./pages/Community";
 import Contact from "./pages/Contact";
@@ -17,8 +19,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/events" element={<EventsAndWorkshops />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/events" element={<EventsAndWorkshops/>}></Route>
+        <Route path="/events/:slug" element={<EventPage />}></Route>
+        <Route path="/events/:slug/rsvp" element={<RSVP />}></Route>
         <Route path="/our-team" element={<OurTeam />} />
         <Route path="/community" element={<Community />} />
         <Route path="/contact" element={<Contact />} />
